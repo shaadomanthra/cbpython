@@ -1,0 +1,12 @@
+To install
+pip3 install virtualenv
+
+to create virtualenv
+>virtualenv <folder_name>
+> eg: virtualenv venv
+
+to activate the virtualenv
+> <folder_name>\Scripts\activate
+
+to deactivate virtualenv
+> deactivate

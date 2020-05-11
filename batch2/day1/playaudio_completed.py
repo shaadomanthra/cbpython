@@ -13,5 +13,4 @@ text = gTTS("welcome to Xplore)
 text.save('welcome_to_xplore.mp3')
 
 #play the file
-#os.system("mpg321 welcome_to_xplore.mp3") # mac command to play mpg321
- os.system("start welcome_to_xplore.mp3") #windows command
+os.system("start welcome_to_xplore.mp3") #windows command
