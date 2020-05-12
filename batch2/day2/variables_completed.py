@@ -1,11 +1,12 @@
 # # Variables in Python
 
 # Variable declaration
-a = 10
-#print(a)
+a =10
+print(a)
+
 # Changing variable values
 a = "apple"
-#print(a)
+print(a)
 
 # Concatination of different type of varaibles
-print("This is a string"+str(123))
+print("Im a string" + str(123))
