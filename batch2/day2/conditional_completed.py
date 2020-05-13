@@ -1,7 +1,8 @@
 # # Conditional Statments
 
 # if, else, elif
-a,b = 10,10
+a = 1010
+b=10
 
 if(a>b):
 	message = "A is greater than B"

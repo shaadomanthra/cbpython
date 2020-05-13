@@ -1,5 +1,4 @@
 import speech_recognition as sr         # import speech library
-import webbrowser
 r = sr.Recognizer()                     # create a speech object
 file = sr.AudioFile('sample.wav')       # take file path
 with file as source:                    # load the file

@@ -7,6 +7,13 @@
 # function with return value
 
 # function with default value
+def loop():
+    for i in range(10):
+        print("happy")
+
+loop()
+
+
 
 # function with varaible arguments
 
