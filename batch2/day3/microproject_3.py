@@ -1,7 +1,14 @@
 from PIL import Image               # import the image package
 
-im = Image.open('sample.jpg')       # load image
-# print(im.format, im.size)           # print the format size
-im = im.convert("L").rotate(90)     # turn to grayscale and rotate
-im.show()                           # open in windows
-im.save('updated.jpg', quality=50)  # save it to computer
+im = Image.open('images/wallpaper.jpg')
+# print( im.size)
+
+# resize image and save
+im2 = im.resize((400,400))
+im2.save('images/wallpaper_resized.jpg')
+print(im2.size)
+#
+# # resize image proportionately and save
+im.thumbnail((400,400))
+im.save('images/wallpaper_thumbnail.jpg')
+print(im.size)

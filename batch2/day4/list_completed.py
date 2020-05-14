@@ -6,36 +6,39 @@ l = [45,56,30,23,46,34,78,33,10,11]
 #print full list
 print(l)
 #print one element based on index
-print(l[4])
+print(l[2])
 # print few elements with start end
-print(l[2:6])
+print(l[2:5])
 # print elements with step
-print(l[2:6:2])
+print(l[2:8:2])
 
 # changing values
-print(l[1])
-l[1]=100
-print(l[1])
+print(l[3])
+l[3]=100
+print(l[3])
 
 # adding elements at the end
-print(l)
-l.append(66)
+l.append(99)
 print(l)
 # add element at a location
-l.insert(2,40)
+l.insert(3,50)
 print(l)
-
 # remove element
 l.remove(34)
 print(l)
 # search for an element
-print(l.index(11))
+print(l.index(50))
 
 
 # generate list with range function
-l=list(range(1,30,5))
-print(l)
+r = list(range(10))
+print(r)
+r = list(range(2,5))
+print(r)
+r = list(range(2,10,3))
+print(r)
 
-## tuples - immutable
-t = (33,24,32,43,55)
+## tupes - immutable
+t = (1,2,3)
 print(t)
+t[0] = 10  # throws error
