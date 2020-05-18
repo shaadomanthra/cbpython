@@ -5,7 +5,7 @@ import cv2
 import sys
 
 # path for image and cascade
-imagePath = 'images/f1.jpg'
+imagePath = 'images/f2.jpg'
 cascPath = "haarcascade_frontalface_default.xml"
 
 # Create the haar cascade
@@ -27,7 +27,7 @@ faces = faceCascade.detectMultiScale(
 for (x, y, w, h) in faces:
     cv2.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
 #
-# # open the image widow to display
+# # # open the image widow to display
 cv2.imshow("Faces found", image)
 cv2.waitKey(0)
 
