@@ -2,7 +2,7 @@ import sqlite3 as lite
 
 def connect(database_name):
     try:
-        conn = lite.connect("sample.db")
+        conn = lite.connect(database_name)
         return conn
     except lite.Error as e:
         print("Some error - " + e)
