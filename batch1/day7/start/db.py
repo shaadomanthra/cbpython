@@ -2,16 +2,21 @@ import sqlite3 as lite
 
 # connect to the database
 def connect(database_name):
-    connection = lite.connect(database_name)
-    return connection
+    try:
+        conn = lite.connect(database_name)
+        return conn
+    except lite.Error as e:
+        print("Some error - " + e)
 
-# print sqlite version
-def version(connection):
-    cursor = connection.cursor()
-    query = "select sqlite_version()"
-    cursor.execute(query)
-    record = cursor.fetchall()
-    print(record)
+# To execute sql query
+def execute(conn,query):
+    try:
+        cursor = conn.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        return result
+    except lite.Error as e:
+        print("Some error - " + e)
 # insert one record into table
 
 # fetch all records from table
