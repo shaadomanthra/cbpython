@@ -1,6 +1,8 @@
 # import the database
-
+import db
 # create conncetion object
+conn = db.connect("sample.db")
+db.version(conn)
 
 # insert statement
 
