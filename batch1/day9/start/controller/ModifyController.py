@@ -11,3 +11,8 @@ class Modify:
         im = image.resize((width,height))
         im.save(path)
         print("The image is successfully resized and saved")
+
+    def imageRotate(self,image,degree,path):
+        im = image.rotate(degree)
+        im.save(path)
+        print("The image is successfully rotated and saved")
