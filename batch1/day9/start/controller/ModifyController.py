@@ -6,3 +6,8 @@ class Modify:
 
     def printSize(self,image):
         print(image.size)
+
+    def imageResizeSave(self,image,width,height,path):
+        im = image.resize((width,height))
+        im.save(path)
+        print("The image is successfully resized and saved")
