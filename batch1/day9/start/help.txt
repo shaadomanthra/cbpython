@@ -1,0 +1,2 @@
+Image optimizer application will resize the image,
+change the image color and rotate the image.
