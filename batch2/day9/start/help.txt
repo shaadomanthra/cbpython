@@ -1,0 +1,2 @@
+The Image Optimizer application will do resize of image, rotation of image,
+change color of image to greyscale and black and white
