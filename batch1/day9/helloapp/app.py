@@ -6,6 +6,5 @@ class MyApp():
         h = Hello()
         h.hello_in_french()
 
-
 app = MyApp()
 app.execute()
