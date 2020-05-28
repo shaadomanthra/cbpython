@@ -5,7 +5,7 @@ class HelloDB:
     def __init__(self,database_name):
         self.conn = lite.connect(database_name)
 
-    def insert(query):
+    def insert(self,query):
         try:
             cursor = self.conn.cursor()
             cursor.execute(query)
