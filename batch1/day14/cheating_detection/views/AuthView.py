@@ -1,10 +1,12 @@
 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
+from controllers.AuthController import AuthController
 
 class AuthView:
 
-    def __init__(self):
+    def load(self):
         self.window = Tk()
         self.window.title("Cheating Detection Application")
         tab_control = ttk.Notebook(self.window)
@@ -79,9 +81,17 @@ class AuthView:
         pe = Entry(window, show="*", width=10)
         pe.grid(row=1, column=1)
 
-        b1 = Button(window,text="Login",padx=5,pady=5)
+        b1 = Button(window,text="Login",command=lambda: self.loginControl( ue.get() ,pe.get()),  padx=5,pady=5)
         b1.grid(row=2,column=1,pady=5)
 
-av = AuthView()
+    def loginControl(self,username,password):
+        ac = AuthController()
+        message = ac.login(username,password)
+        messagebox.showinfo('Message',message)
+
+
+
+if __name__ == '__main__':
+    av = AuthView()
 
 

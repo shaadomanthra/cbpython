@@ -1,5 +1,5 @@
 
-from db import *
+from lib.db import *
 
 class AuthModel:
 
@@ -10,6 +10,7 @@ class AuthModel:
         query  = f"SELECT * FROM users WHERE username='{username}' and password ='{password}' "
         result =  fetchone(self.conn, query)
         print(result)
+        return result
 
     def createUser(self,name,phone,email,username,password):
         query = f"INSERT INTO users (name,phone,email,username,password) VALUES ('{name}',{phone},'{email}','{username}','{password}')"
@@ -18,5 +19,6 @@ class AuthModel:
         except:
             print("Some database error")
 
-am  = AuthModel()
-am.createUser('Rajesh',7777777777,'rajesh@gmail.com','rajesh','rajesh123')
+if __name__ == '__main__':
+    am  = AuthModel()
+    am.createUser('Rajesh',7777777777,'rajesh@gmail.com','rajesh','rajesh123')
