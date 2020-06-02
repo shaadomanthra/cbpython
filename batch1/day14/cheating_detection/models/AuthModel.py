@@ -11,6 +11,12 @@ class AuthModel:
         result =  fetchone(self.conn, query)
         print(result)
 
+    def createUser(self,name,phone,email,username,password):
+        query = f"INSERT INTO users (name,phone,email,username,password) VALUES ('{name}',{phone},'{email}','{username}','{password}')"
+        try:
+            insert(self.conn,query)
+        except:
+            print("Some database error")
 
 am  = AuthModel()
-am.getUser('teja','teja123')
+am.createUser('Rajesh',7777777777,'rajesh@gmail.com','rajesh','rajesh123')
