@@ -1,0 +1,11 @@
+In the Covid-19 pandemic situation, every organisation is looking at moving their operations online.
+Same is with the academic organisations like schools and colleges. One of the biggest challenge
+for them is to conduct exams where students do not copy or cheat.
+
+This application Exam cheating detection helps the organisations run a proctored
+exam where the examiner can verify how many users are attempting the test from the same
+system at the same time.
+
+To Run the  code use the following command
+> python app.py
+
