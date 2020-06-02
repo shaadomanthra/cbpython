@@ -24,8 +24,10 @@ def insert(connection,query):
         cursor = connection.cursor()
         cursor.execute(query)
         connection.commit() # saves the data onto the disk
+        return 1
     except lite.Error as e:
         print(e)
+        return 0
 
 # fetch all records from table
 def fetchall(connection,query):

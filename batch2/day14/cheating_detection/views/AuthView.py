@@ -9,7 +9,6 @@ class AuthView:
         window = Tk()
         window.title("My Application")
 
-
         tab_control = ttk.Notebook(window)
 
         login_tab = Frame(tab_control,bg="white",padx=10,pady=10)
@@ -46,6 +45,8 @@ class AuthView:
 
     def loginControl(self,username,password):
         ac = AuthController()
+        print('Username',username)
+        print('Password',password)
         message = ac.login(username,password)
 
         if message:
@@ -91,8 +92,18 @@ class AuthView:
         pe.grid(row=4, column=1)
 
         #  create a button register
-        b = Button(window, text="Register")
+        b = Button(window, text="Register", command=lambda: self.registerControl(ne.get(),phe.get(),ee.get(),
+                                                                                 ue.get(),pe.get()))
         b.grid(row=5, column=1)
+
+    def registerControl(self,name,phone,email,username,password):
+
+        ac = AuthController()
+        message = ac.register(name,phone,email,username,password,'student')
+
+        if message:
+            messagebox.showinfo('Alert',message)
+
 
 av = AuthView()
 
