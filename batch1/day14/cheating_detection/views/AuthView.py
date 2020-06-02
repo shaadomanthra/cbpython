@@ -10,8 +10,8 @@ class AuthView:
         tab_control = ttk.Notebook(self.window)
 
 
-        self.login_tab = ttk.Frame(tab_control)
-        self.register_tab = ttk.Frame(tab_control)
+        self.login_tab = Frame(tab_control,bg="white",padx=20,pady=20)
+        self.register_tab = Frame(tab_control,bg="white",padx=20,pady=20)
 
         tab_control.add(self.login_tab, text="Login")
         tab_control.add(self.register_tab, text = "Register")
@@ -61,8 +61,8 @@ class AuthView:
         phe = Entry(window, width=10)
         phe.grid(row=4, column=1)
 
-        b1 = Button(window, text="Register")
-        b1.grid(row=5, column=1)
+        b1 = Button(window, text="Register",padx=5,pady=5)
+        b1.grid(row=5, column=1,pady=5)
 
     def login(self):
         window = self.login_tab
@@ -79,8 +79,8 @@ class AuthView:
         pe = Entry(window, show="*", width=10)
         pe.grid(row=1, column=1)
 
-        b1 = Button(window,text="Login")
-        b1.grid(row=2,column=1)
+        b1 = Button(window,text="Login",padx=5,pady=5)
+        b1.grid(row=2,column=1,pady=5)
 
 av = AuthView()
 
