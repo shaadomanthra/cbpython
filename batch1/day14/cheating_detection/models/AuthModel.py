@@ -16,8 +16,10 @@ class AuthModel:
         query = f"INSERT INTO users (name,phone,email,username,password) VALUES ('{name}',{phone},'{email}','{username}','{password}')"
         try:
             insert(self.conn,query)
+            return 1
         except:
             print("Some database error")
+            return 0
 
 if __name__ == '__main__':
     am  = AuthModel()

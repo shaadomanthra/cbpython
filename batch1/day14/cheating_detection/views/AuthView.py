@@ -63,7 +63,10 @@ class AuthView:
         phe = Entry(window, width=10)
         phe.grid(row=4, column=1)
 
-        b1 = Button(window, text="Register",padx=5,pady=5)
+        b1 = Button(window, text="Register",command = lambda: self.registerControl(ne.get(),
+                                                                              phe.get(),ee.get(),
+                                                                              ue.get(),pe.get()
+                                                                              ), padx=5,pady=5)
         b1.grid(row=5, column=1,pady=5)
 
     def login(self):
@@ -88,6 +91,12 @@ class AuthView:
         ac = AuthController()
         message = ac.login(username,password)
         messagebox.showinfo('Message',message)
+
+    def registerControl(self,name,phone,email,username,password):
+
+        ac = AuthController()
+        message = ac.register(name,phone,email,username,password)
+        messagebox.showinfo('Message', message)
 
 
 
