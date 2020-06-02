@@ -1,9 +1,11 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
+from controllers.AuthController import AuthController
 
 class AuthView:
 
-    def __init__(self):
+    def load(self):
         window = Tk()
         window.title("My Application")
 
@@ -39,10 +41,15 @@ class AuthView:
         pe = Entry(window, show='*',width=10)
         pe.grid(row=1,column=1)
 
-        b = Button(window, text="Login")
+        b = Button(window, text="Login",command=lambda: self.loginControl(ue.get(),pe.get()))
         b.grid(row=2,column=1)
 
+    def loginControl(self,username,password):
+        ac = AuthController()
+        message = ac.login(username,password)
 
+        if message:
+            messagebox.showinfo('Alert',message)
 
     def register(self,register_tab):
 
@@ -86,8 +93,6 @@ class AuthView:
         #  create a button register
         b = Button(window, text="Register")
         b.grid(row=5, column=1)
-
-
 
 av = AuthView()
 
