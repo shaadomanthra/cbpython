@@ -23,6 +23,9 @@ class DetectionView:
         b2 = Button(frame, text="stop", command=self.stopCamera)
         b2.grid(row=1, column=1)
 
+        self.l2 = Label(frame,text="CCamera started")
+        self.l2.grid(row=2,column=0,columns=2)
+
         self.startCamera()
         window.mainloop()
 
@@ -55,8 +58,7 @@ class DetectionView:
         r = self.cascade.detectMultiScale(grayimg,1.7,11)
         for (x,y,w,h) in r:
             cv2.rectangle(colorimg,(x,y),(x+w,y+h),(0,255,0),3)
-
-
+            self.l2.config(text="Mask is not used properly")
 
         # converting the image to tkinter compatible image
         img = Image.fromarray(colorimg)
