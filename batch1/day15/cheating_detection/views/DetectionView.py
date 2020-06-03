@@ -9,10 +9,39 @@ class DetectionView:
     def load(self):
 
         window = Tk()
-        frame = Frame(window)
-        frame.grid(row=0,column=0)
+        window.title("Cheating Detection App")
 
-        l1 = Label(frame,text="Webcamera")
-        l1.grid(row=1,column=0)
+        frame = Frame(window,padx=20,pady=20,bg="yellow")
+        frame.grid(row=0,column=0,padx=10,pady=10)
+
+        self.l1 = Label(frame)
+        self.l1.grid(row=1,column=0)
+
+        self.startCamera()
 
         window.mainloop()
+
+    def startCamera(self):
+
+        self.cap = cv2.VideoCapture(0)
+        t = threading.Thread(target= self.webcam, args=())
+        t.start()
+
+    def webcam(self):
+        try:
+            ret, image_frame = self.cap.read()
+            image_frame = cv2.resize(image_frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
+            self.img = Image.fromarray(image_frame)
+
+            colorimage = cv2.cvtColor(image_frame, cv2.COLOR_BGR2RGB)
+            grayimage = cv2.cvtColor(image_frame, cv2.COLOR_BGR2GRAY)
+
+            self.img = Image.fromarray(colorimage)
+            img = ImageTk.PhotoImage(self.img)
+            self.l1.configure(image=img)
+            self.l1.image = img
+
+            self.l1.after(10, self.webcam)
+
+        except:
+            print("Some error")
