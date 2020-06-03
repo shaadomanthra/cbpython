@@ -25,12 +25,17 @@ class DetectionView:
         b2 = Button(frame, text="stop",command=self.stopCamera)
         b2.grid(row=2, column=1)
 
+        self.l2 = Label(frame,text='STATUS - Camera Started')
+        self.l2.grid(row=3,column=0,columns=2)
+
         self.startCamera()
 
         window.mainloop()
 
     def startCamera(self):
         self.stop = False
+
+        self.cascade = cv2.CascadeClassifier('lib/nose.xml')
         self.cap = cv2.VideoCapture(0)
         t = threading.Thread(target= self.webcam, args=())
         t.start()
@@ -43,6 +48,12 @@ class DetectionView:
 
             colorimage = cv2.cvtColor(image_frame, cv2.COLOR_BGR2RGB)
             grayimage = cv2.cvtColor(image_frame, cv2.COLOR_BGR2GRAY)
+
+            # core functionality - Face ddetection
+            r = self.cascade.detectMultiScale(grayimage,1.7,11)
+            for (x,y,w,h) in r:
+                cv2.rectangle(colorimage,(x,y),(x+w,y+h),(0,255,0),3)
+                self.l2.config(text="Face mask is not there")
 
             self.img = Image.fromarray(colorimage)
             img = ImageTk.PhotoImage(self.img)
@@ -61,6 +72,7 @@ class DetectionView:
     def stopCamera(self):
         self.stop = True
 
- 
 
 
+#  pip unistall opencv-python
+#  pip install opencv-python
