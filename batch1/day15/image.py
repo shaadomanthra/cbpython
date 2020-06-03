@@ -1,5 +1,7 @@
 import cv2
 
+#  pip install opencv-python
+
 # Load an color image in grayscale
 img = cv2.imread('f1.jpg')
 
