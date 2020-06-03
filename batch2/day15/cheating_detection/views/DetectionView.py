@@ -8,6 +8,7 @@ class DetectionView:
     stop = False
 
     def load(self):
+        print("load")
         window = Tk()
         window.title("Cheating Detection App")
         frame = Frame(window,bg="yellow",padx=10,pady=10)
@@ -26,17 +27,21 @@ class DetectionView:
         window.mainloop()
 
     def startCamera(self):
+        print("start camera")
         self.stop = False
-        
+
         # create an instance for video capture via webcam
         self.cap = cv2.VideoCapture(0)
 
+        print("Video capture")
         #  start the process by threading - to run processes parallely
         t = threading.Thread(target=self.webcam,args=())
+        print("Threading")
         t.start()
 
 
     def webcam(self):
+        print("webcam")
 
         # capture each frame (image)
         ret, frame = self.cap.read()
@@ -59,6 +64,7 @@ class DetectionView:
             self.l1.image = None
 
     def stopCamera(self):
+        print("stop camera")
         self.stop = True
 
 

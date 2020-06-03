@@ -1,6 +1,6 @@
 # import the computer vision library
 # import cv2
-from cv2 import cv2
+import cv2
 # enable the webcamera
 cap = cv2.VideoCapture(0)
 
