@@ -30,6 +30,8 @@ class DetectionView:
         print("start camera")
         self.stop = False
 
+        self.cascade = cv2.CascadeClassifier('lib/nose.xml')
+
         # create an instance for video capture via webcam
         self.cap = cv2.VideoCapture(0)
 
@@ -48,6 +50,13 @@ class DetectionView:
         frame = cv2.resize(frame,None,fx=0.5,fy=0.5,interpolation=cv2.INTER_AREA)
         # change the color to RBG
         colorimg = cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+        grayimg = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+
+        r = self.cascade.detectMultiScale(grayimg,1.7,11)
+        for (x,y,w,h) in r:
+            cv2.rectangle(colorimg,(x,y),(x+w,y+h),(0,255,0),3)
+
+
 
         # converting the image to tkinter compatible image
         img = Image.fromarray(colorimg)
