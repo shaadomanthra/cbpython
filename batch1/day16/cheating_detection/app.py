@@ -5,14 +5,14 @@ from views.DetectionView import DetectionView
 class MyApp:
 
     def run(self):
-        # av = AuthView()
-        # av.load()
+        av = AuthView()
+        av.transfer_control = self.detection
+        av.load()
 
+
+    def detection(self):
         dv = DetectionView()
         dv.load()
-
-    def printSomething(self):
-        print("This is My App print function")
 
 
 app = MyApp()

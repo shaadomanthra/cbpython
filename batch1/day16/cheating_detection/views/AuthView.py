@@ -6,6 +6,8 @@ from controllers.AuthController import AuthController
 
 class AuthView:
 
+    transfer_control = None
+
     def load(self):
         self.window = Tk()
         self.window.title("Cheating Detection Application")
@@ -90,7 +92,12 @@ class AuthView:
     def loginControl(self,username,password):
         ac = AuthController()
         message = ac.login(username,password)
-        messagebox.showinfo('Message',message)
+        if message == 1:
+            self.window.destroy()
+            self.transfer_control()
+
+        else:
+            messagebox.showinfo('Message',message)
 
     def registerControl(self,name,phone,email,username,password):
 
