@@ -27,7 +27,7 @@ class DetectionView:
         self.l2.grid(row=2,column=0,columns=2)
 
         self.startCamera()
-        window.mainloop()
+        # window.mainloop()
 
     def startCamera(self):
         print("start camera")
@@ -56,7 +56,9 @@ class DetectionView:
         grayimg = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
 
         r = self.cascade.detectMultiScale(grayimg,1.7,11)
+        print(r)
         for (x,y,w,h) in r:
+            print("yes", x, y, w, h)
             cv2.rectangle(colorimg,(x,y),(x+w,y+h),(0,255,0),3)
             self.l2.config(text="Mask is not used properly")
 
@@ -69,10 +71,10 @@ class DetectionView:
         self.l1.image = imgtk
 
         # loop this process for every 10ms
-        if self.stop == False:
-            self.l1.after(10,self.webcam)
-        else:
-            self.l1.image = None
+        # if self.stop == False:
+        #     self.l1.after(10,self.webcam)
+        # else:
+        #     self.l1.image = None
 
     def stopCamera(self):
         print("stop camera")
