@@ -7,7 +7,7 @@ import threading
 import random
 from pyzbar import pyzbar
 
-class DetectionView:
+class BarView:
 
     stop = False
 
@@ -41,7 +41,6 @@ class DetectionView:
     def startCamera(self):
         self.stop = False
 
-        self.cascade = cv2.CascadeClassifier('lib/nose.xml')
         self.cap = cv2.VideoCapture(0)
         t = threading.Thread(target= self.webcam, args=())
         t.start()
@@ -59,13 +58,22 @@ class DetectionView:
             grayimage = cv2.cvtColor(image_frame, cv2.COLOR_BGR2GRAY)
 
             # core functionality - Face ddetection
-            r = self.cascade.detectMultiScale(grayimage,1.7,11)
-            if len(r) != 0:
-                for (x,y,w,h) in r:
-                    cv2.rectangle(colorimage,(x,y),(x+w,y+h),(0,255,0),3)
-                    self.l2.config(text="Face mask is not there")
-            else:
-                self.l2.config(text="Face is covered with mask")
+            # r = self.cascade.detectMultiScale(grayimage,1.7,11)
+            # if len(r) != 0:
+            #     for (x,y,w,h) in r:
+            #         self.l2.config(text="Face mask is not there")
+            # else:
+            #     self.l2.config(text="Face is covered with mask")
+            for barcode in barcodes:
+
+                (x, y, w, h) = barcode.rect
+                cv2.rectangle(colorimage, (x, y), (x + w, y + h), (0, 0, 255), 2)
+
+                barcodeData = barcode.data.decode("utf-8")
+                barcodeType = barcode.type
+                text = "{} ({})".format(barcodeData, barcodeType)
+                cv2.putText(colorimage, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
+                            0.5, (0, 0, 255), 2)
 
             self.img = Image.fromarray(colorimage)
             img = ImageTk.PhotoImage(self.img)
