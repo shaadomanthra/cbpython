@@ -15,7 +15,7 @@ class AuthController:
         am = AuthModel()
         result = am.getUser(username,password)
         if result:
-            message = f'User found {result[1]}'
+            message = 1
         else:
             message = f'User not found'
 

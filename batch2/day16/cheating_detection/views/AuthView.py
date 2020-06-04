@@ -6,10 +6,10 @@ from controllers.AuthController import AuthController
 class AuthView:
 
     def load(self):
-        window = Tk()
-        window.title("My Application")
+        self.window = Tk()
+        self.window.title("My Application")
 
-        tab_control = ttk.Notebook(window)
+        tab_control = ttk.Notebook(self.window)
 
         login_tab = Frame(tab_control,bg="white",padx=10,pady=10)
         register_tab =  Frame(tab_control,bg="white",padx=10,pady=10)
@@ -22,7 +22,7 @@ class AuthView:
 
         tab_control.grid()
 
-        window.mainloop()
+        self.window.mainloop()
 
     def login(self,login_tab):
 
@@ -49,7 +49,10 @@ class AuthView:
         print('Password',password)
         message = ac.login(username,password)
 
-        if message:
+        if message == 1:
+            self.window.destroy()
+            self.transfer_control()
+        else:
             messagebox.showinfo('Alert',message)
 
     def register(self,register_tab):
