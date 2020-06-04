@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import cv2
 from PIL import Image
 from PIL import ImageTk
@@ -13,20 +14,23 @@ class DetectionView:
         window = Tk()
         window.title("Cheating Detection App")
 
-        frame = Frame(window,padx=20,pady=20,bg="yellow")
+        frame = Frame(window,padx=20,pady=20,bg="#7bed9f")
         frame.grid(row=0,column=0,padx=10,pady=10)
 
         self.l1 = Label(frame)
-        self.l1.grid(row=1,column=0,columns=2)
+        self.l1.grid(row=1,column=0,columns=3)
 
-        b1 = Button(frame,text="start",command= self.startCamera)
-        b1.grid(row=2,column=0)
+        b1 = Button(frame,text="start",command= self.startCamera,pady=10)
+        b1.grid(row=2,column=0,sticky='nsew',pady=10)
 
-        b2 = Button(frame, text="stop",command=self.stopCamera)
-        b2.grid(row=2, column=1)
+        b2 = Button(frame, text="stop",command=self.stopCamera,pady=10)
+        b2.grid(row=2, column=1,sticky='nsew',pady=10)
 
-        self.l2 = Label(frame,text='STATUS - Camera Started')
-        self.l2.grid(row=3,column=0,columns=2)
+        b3 = Button(frame, text="Capture", command=self.capturePhoto, pady=10)
+        b3.grid(row=2, column=2, sticky='nsew', pady=10)
+
+        self.l2 = Label(frame,text='STATUS - Camera Started',font=("Courier", 30))
+        self.l2.grid(row=3,column=0,columns=3,sticky='nsew',pady=(10,0))
 
         self.startCamera()
 
@@ -51,9 +55,12 @@ class DetectionView:
 
             # core functionality - Face ddetection
             r = self.cascade.detectMultiScale(grayimage,1.7,11)
-            for (x,y,w,h) in r:
-                cv2.rectangle(colorimage,(x,y),(x+w,y+h),(0,255,0),3)
-                self.l2.config(text="Face mask is not there")
+            if len(r) != 0:
+                for (x,y,w,h) in r:
+                    cv2.rectangle(colorimage,(x,y),(x+w,y+h),(0,255,0),3)
+                    self.l2.config(text="Face mask is not there")
+            else:
+                self.l2.config(text="Face is covered with mask")
 
             self.img = Image.fromarray(colorimage)
             img = ImageTk.PhotoImage(self.img)
@@ -68,6 +75,17 @@ class DetectionView:
 
         except:
             print("Some error")
+
+    def capturePhoto(self):
+        image = self.img
+        try:
+            image.save('images/1.jpg')
+            messagebox.showinfo('Alert','Image is saved')
+        except:
+            memoryview.showinfo('Alert','Some error in saving the image')
+
+
+
 
     def stopCamera(self):
         self.stop = True
