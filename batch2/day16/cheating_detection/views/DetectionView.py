@@ -4,6 +4,7 @@ from cv2 import cv2
 from PIL import Image           # pip install pillow
 from PIL import ImageTk
 import threading
+import random
 
 class DetectionView:
     stop = False
@@ -84,9 +85,10 @@ class DetectionView:
 
     def captureImage(self):
         image = self.img
+        name = random.randint(0,9999)
         try:
-            image.save('images/1.jpg')
-            messagebox.showinfo('Alert','Image is saved')
+            image.save(f'images/{name}.jpg')
+            messagebox.showinfo('Alert',f'Image is saved as {name}.jpg')
         except:
             messagebox.showinfo('Alert', 'Some error in saving image')
 
